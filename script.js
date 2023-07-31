@@ -96,5 +96,3 @@ function game() {
         console.log("It's a Draw! Good Game.");
     }
 }
-
-game();
