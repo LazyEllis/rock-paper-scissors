@@ -1,4 +1,4 @@
-function getComputerChoice() {
+let getComputerChoice = () => {
     // assign variable "choice" a random number between 1 and 3
     let choice = Math.floor(Math.random() * 3) + 1;
 
@@ -12,9 +12,9 @@ function getComputerChoice() {
         // if choice = 3, return "scissors"
         return "Scissors";
     }
-}
+};
 
-function playRound(playerSelection, computerSelection) {
+let playRound = (playerSelection, computerSelection) => {
     // Assign variable "playerChoice" the lowercase version of string "playerSelection"
     playerChoice = playerSelection.toLowerCase();
     // Assign variable "" the lowercase version of string "playerSelection"
@@ -51,9 +51,9 @@ function playRound(playerSelection, computerSelection) {
         );
         return "D";
     }
-}
+};
 
-function game() {
+let game = () => {
     // assign variable "playerScore" an inital value of 0
     let playerScore = 0;
     // assign variable "computerScore" an inital value of 0
@@ -95,4 +95,4 @@ function game() {
         // if they have the same points declare a draw
         console.log("It's a Draw! Good Game.");
     }
-}
+};
