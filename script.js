@@ -1,4 +1,4 @@
-let getComputerChoice = () => {
+const getComputerChoice = () => {
     let choice = Math.floor(Math.random() * 3) + 1; // assigns a rondom number between 1 and 3
 
     if (choice === 1) {
@@ -10,9 +10,9 @@ let getComputerChoice = () => {
     }
 };
 
-let playRound = (playerSelection, computerSelection) => {
-    playerChoice = playerSelection.toLowerCase();
-    computerChoice = computerSelection.toLowerCase();
+const playRound = (playerSelection, computerSelection) => {
+    let playerChoice = playerSelection.toLowerCase();
+    let computerChoice = computerSelection.toLowerCase();
 
     if (playerChoice === "rock" && computerChoice === "scissors") {
         console.log("You Win! Rock beats Scissors");
@@ -40,7 +40,7 @@ let playRound = (playerSelection, computerSelection) => {
     }
 };
 
-let game = () => {
+const game = () => {
     let playerScore = 0;
     let computerScore = 0;
 
