@@ -15,27 +15,32 @@ const playRound = (playerSelection, computerSelection) => {
     let computerChoice = computerSelection.toLowerCase();
 
     if (playerChoice === "rock" && computerChoice === "scissors") {
-        console.log("You Win! Rock beats Scissors");
+        roundResult.textContent = "You Win! Rock beats Scissors";
+        scoreBoard.appendChild(roundResult);
         return "W";
     } else if (playerChoice === "rock" && computerChoice === "paper") {
-        console.log("You Lose! Rock loses to Paper");
+        roundResult.textContent = "You Lose! Rock loses to Paper";
+        scoreBoard.appendChild(roundResult);
         return "L";
     } else if (playerChoice === "paper" && computerChoice === "rock") {
-        console.log("You Win! Paper beats Rock");
+        roundResult.textContent = "You Win! Paper beats Rock";
+        scoreBoard.appendChild(roundResult);
         return "W";
     } else if (playerChoice === "paper" && computerChoice === "scissors") {
-        console.log("You Lose! Paper loses to Scissors");
+        roundResult.textContent = "You Lose! Paper loses to Scissors";
+        scoreBoard.appendChild(roundResult);
         return "L";
     } else if (playerChoice === "scissors" && computerChoice === "paper") {
-        console.log("You Win! Scissors beats Paper");
+        roundResult.textContent = "You Win! Scissors beats Paper";
+        scoreBoard.appendChild(roundResult);
         return "W";
     } else if (playerChoice === "scissors" && computerChoice === "rock") {
-        console.log("You Lose! Scissors loses to Rock");
+        roundResult.textContent = "You Lose! Scissors loses to Rock";
+        scoreBoard.appendChild(roundResult);
         return "L";
     } else if (playerChoice === computerChoice) {
-        console.log(
-            `Draw ${computerSelection} and ${computerSelection} cancel out`
-        );
+        roundResult.textContent = `Draw ${computerSelection} and ${computerSelection} cancel out`;
+        scoreBoard.appendChild(roundResult);
         return "D";
     }
 };
@@ -44,15 +49,20 @@ const game = () => {
     let playerScore = 0;
     let computerScore = 0;
 
-    console.log("\nGAME OVER!");
-    console.log(`Player ${playerScore} - ${computerScore} Computer`);
+    gameOver.textContent = "GAME OVER!";
+    scoreBoard.appendChild(gameOver);
+    gameScore.textContent = `Player ${playerScore} - ${computerScore} Computer`;
+    scoreBoard.appendChild(gameScore);
 
     if (playerScore > computerScore) {
-        console.log("Congratulations! You Win!");
+        gameResult.textContent = "Congratulations! You Win!";
+        scoreBoard.appendChild(roundResult);
     } else if (playerScore < computerScore) {
-        console.log("You Lose! Better Luck Next Time.");
+        gameResult.textContent = "You Lose! Better Luck Next Time.";
+        scoreBoard.appendChild(roundResult);
     } else {
-        console.log("It's a Draw! Good Game.");
+        gameResult.textContent = "It's a Draw! Good Game.";
+        scoreBoard.appendChild(roundResult);
     }
 };
 
@@ -63,3 +73,9 @@ buttons.forEach((button) => {
         playRound(button.textContent, getComputerChoice())
     );
 });
+
+let scoreBoard = document.querySelector("div");
+let roundResult = document.createElement("p");
+let gameScore = document.createElement("p");
+let gameOver = document.createElement("p");
+let gameResult = document.createElement("p");
