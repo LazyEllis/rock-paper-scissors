@@ -44,22 +44,6 @@ const game = () => {
     let playerScore = 0;
     let computerScore = 0;
 
-    // loops the game 5 times
-    for (let i = 1; i <= 5; i++) {
-        console.log(`Player ${playerScore} - ${computerScore} Computer`);
-
-        let choice = prompt("Choose your weapon. Rock, Paper or Scissors.");
-        let roundResult = playRound(choice, getComputerChoice());
-
-        if (roundResult === "W") {
-            ++playerScore;
-        } else if (roundResult === "L") {
-            ++computerScore;
-        } else {
-            continue;
-        }
-    }
-
     console.log("\nGAME OVER!");
     console.log(`Player ${playerScore} - ${computerScore} Computer`);
 
@@ -71,3 +55,11 @@ const game = () => {
         console.log("It's a Draw! Good Game.");
     }
 };
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () =>
+        playRound(button.textContent, getComputerChoice())
+    );
+});
