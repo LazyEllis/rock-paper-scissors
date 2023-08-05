@@ -1,3 +1,16 @@
+const buttons = document.querySelectorAll(".choice");
+const scoreBoard = document.querySelector("div");
+const roundResult = document.createElement("p");
+const gameScore = document.createElement("p");
+const gameOver = document.createElement("p");
+const gameResult = document.createElement("p");
+const replayButton = document.createElement("button");
+
+let computerScore = 0;
+let playerScore = 0;
+gameOver.textContent = "GAME OVER!";
+replayButton.textContent = "Play Again";
+
 const getComputerChoice = () => {
     const choice = Math.floor(Math.random() * 3) + 1; // assigns a rondom number between 1 and 3
 
@@ -71,6 +84,12 @@ const checkIfGameOver = () => {
         }
 
         scoreBoard.appendChild(gameResult);
+
+        buttons.forEach((button) => {
+            button.disabled = true;
+        });
+
+        scoreBoard.appendChild(replayButton);
     } else {
         return;
     }
@@ -84,18 +103,10 @@ playGame = (playerChoice) => {
     checkIfGameOver();
 };
 
-const buttons = document.querySelectorAll("button");
-const scoreBoard = document.querySelector("div");
-const roundResult = document.createElement("p");
-const gameScore = document.createElement("p");
-const gameOver = document.createElement("p");
-const gameResult = document.createElement("p");
-let computerScore = 0;
-let playerScore = 0;
-gameOver.textContent = "GAME OVER!";
-
 displayScore();
 
 buttons.forEach((button) => {
     button.addEventListener("click", () => playGame(button.textContent));
 });
+
+replayButton.addEventListener("click", () => window.location.reload());
