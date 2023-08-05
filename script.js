@@ -1,5 +1,5 @@
 const getComputerChoice = () => {
-    let choice = Math.floor(Math.random() * 3) + 1; // assigns a rondom number between 1 and 3
+    const choice = Math.floor(Math.random() * 3) + 1; // assigns a rondom number between 1 and 3
 
     if (choice === 1) {
         return "Rock";
@@ -60,25 +60,42 @@ const displayScore = () => {
     scoreBoard.appendChild(gameScore);
 };
 
+const checkIfGameOver = () => {
+    if (playerScore === 5 || computerScore === 5) {
+        scoreBoard.appendChild(gameOver);
+
+        if (playerScore > computerScore) {
+            gameResult.textContent = "Congratulations! You Win!";
+        } else {
+            gameResult.textContent = "You Lose! Better Luck Next Time.";
+        }
+
+        scoreBoard.appendChild(gameResult);
+    } else {
+        return;
+    }
+};
+
+playGame = (playerChoice) => {
+    const roundResultCode = playRound(playerChoice, getComputerChoice());
+
+    updateScore(roundResultCode);
+    displayScore();
+    checkIfGameOver();
+};
+
 const buttons = document.querySelectorAll("button");
-let scoreBoard = document.querySelector("div");
-let roundResult = document.createElement("p");
-let gameScore = document.createElement("p");
-let gameOver = document.createElement("p");
-let gameResult = document.createElement("p");
+const scoreBoard = document.querySelector("div");
+const roundResult = document.createElement("p");
+const gameScore = document.createElement("p");
+const gameOver = document.createElement("p");
+const gameResult = document.createElement("p");
 let computerScore = 0;
 let playerScore = 0;
+gameOver.textContent = "GAME OVER!";
 
 displayScore();
 
 buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-        let roundResultCode = playRound(
-            button.textContent,
-            getComputerChoice()
-        );
-
-        updateScore(roundResultCode);
-        displayScore();
-    });
+    button.addEventListener("click", () => playGame(button.textContent));
 });
