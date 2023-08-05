@@ -45,37 +45,40 @@ const playRound = (playerSelection, computerSelection) => {
     }
 };
 
-const game = () => {
-    let playerScore = 0;
-    let computerScore = 0;
-
-    gameOver.textContent = "GAME OVER!";
-    scoreBoard.appendChild(gameOver);
-    gameScore.textContent = `Player ${playerScore} - ${computerScore} Computer`;
-    scoreBoard.appendChild(gameScore);
-
-    if (playerScore > computerScore) {
-        gameResult.textContent = "Congratulations! You Win!";
-        scoreBoard.appendChild(roundResult);
-    } else if (playerScore < computerScore) {
-        gameResult.textContent = "You Lose! Better Luck Next Time.";
-        scoreBoard.appendChild(roundResult);
+const updateScore = (roundResultCode) => {
+    if (roundResultCode === "W") {
+        playerScore++;
+    } else if (roundResultCode === "L") {
+        computerScore++;
     } else {
-        gameResult.textContent = "It's a Draw! Good Game.";
-        scoreBoard.appendChild(roundResult);
+        return;
     }
 };
 
+const displayScore = () => {
+    gameScore.textContent = `Player ${playerScore} - ${computerScore} Computer`;
+    scoreBoard.appendChild(gameScore);
+};
+
 const buttons = document.querySelectorAll("button");
-
-buttons.forEach((button) => {
-    button.addEventListener("click", () =>
-        playRound(button.textContent, getComputerChoice())
-    );
-});
-
 let scoreBoard = document.querySelector("div");
 let roundResult = document.createElement("p");
 let gameScore = document.createElement("p");
 let gameOver = document.createElement("p");
 let gameResult = document.createElement("p");
+let computerScore = 0;
+let playerScore = 0;
+
+displayScore();
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        let roundResultCode = playRound(
+            button.textContent,
+            getComputerChoice()
+        );
+
+        updateScore(roundResultCode);
+        displayScore();
+    });
+});
