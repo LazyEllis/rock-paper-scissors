@@ -1,0 +1,78 @@
+@font-face {
+  font-family: "urw_din_arabic_condmedium";
+  src: url("./assets/fonts/urw_din_arabic_cond_medium-webfont.woff2")
+      format("woff2"),
+    url("./assets/fonts/urw_din_arabic_cond_medium-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --background-color: #282468;
+  --primary-text-color: #fcfffa;
+
+  --primary-btn-color: #151043;
+  --primary-btn-text-color: #7bd0fa;
+  --primary-btn-icon-color: invert(24%) sepia(45%) saturate(4820%)
+    hue-rotate(252deg) brightness(101%) contrast(90%);
+
+  --secondary-btn-color: #8944f5;
+  --secondary-btn-text-color: #29edc4;
+  --secondary-btn-icon-color: invert(79%) sepia(93%) saturate(387%)
+    hue-rotate(95deg) brightness(95%) contrast(93%);
+}
+
+* {
+  box-sizing: content-box;
+}
+
+body {
+  height: 100vh;
+  font-family: "urw_din_arabic_condmedium", sans-serif;
+  font-size: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+img {
+  width: 75%;
+  filter: var(--primary-btn-icon-color);
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  padding: 10px;
+  background-color: var(--primary-btn-color);
+  color: var(--primary-btn-text-color);
+  border: none;
+  outline: 1px solid var(--secondary-btn-text-color);
+}
+
+button:hover {
+  background-color: var(--secondary-btn-color);
+  color: var(--secondary-btn-text-color);
+}
+
+button:hover img {
+  filter: var(--secondary-btn-icon-color);
+}
+
+.container {
+  display: flex;
+  gap: 10px;
+}
+
+.scoreboard {
+  text-align: center;
+}
