@@ -86,7 +86,7 @@ const checkIfGameOver = () => {
     scoreBoard.appendChild(gameResult);
 
     buttons.forEach((button) => {
-      button.disabled = true;
+      button.removeEventListener('click', playGame);
     });
 
     scoreBoard.appendChild(replayButton);
@@ -95,18 +95,35 @@ const checkIfGameOver = () => {
   }
 };
 
-playGame = (playerChoice) => {
-  const roundResultCode = playRound(playerChoice, getComputerChoice());
+const playGame = (e) => {
+  const roundResultCode = playRound(
+    e.target.textContent.trim(),
+    getComputerChoice()
+  );
 
   updateScore(roundResultCode);
   displayScore();
   checkIfGameOver();
 };
 
+const replayGame = () => {
+  playerScore = 0;
+  computerScore = 0;
+  scoreBoard.removeChild(roundResult);
+  scoreBoard.removeChild(gameOver);
+  scoreBoard.removeChild(gameResult);
+  scoreBoard.removeChild(replayButton);
+  displayScore();
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', playGame);
+  });
+};
+
 displayScore();
 
 buttons.forEach((button) => {
-  button.addEventListener('click', () => playGame(button.textContent.trim()));
+  button.addEventListener('click', playGame);
 });
 
-replayButton.addEventListener('click', () => window.location.reload());
+replayButton.addEventListener('click', replayGame);

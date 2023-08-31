@@ -42,11 +42,13 @@ body {
 h1,
 p {
   margin: 0;
+  pointer-events: none;
 }
 
 img {
   width: 75%;
   filter: var(--primary-btn-icon-color);
+  pointer-events: none;
 }
 
 button {
