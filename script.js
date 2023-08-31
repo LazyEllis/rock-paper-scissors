@@ -12,7 +12,7 @@ gameOver.textContent = 'GAME OVER!';
 replayButton.textContent = 'Play Again';
 
 const getComputerChoice = () => {
-  const choice = Math.floor(Math.random() * 3) + 1; // assigns a rondom number between 1 and 3
+  const choice = Math.floor(Math.random() * 3) + 1; // assigns a random number between 1 and 3
 
   if (choice === 1) {
     return 'Rock';
